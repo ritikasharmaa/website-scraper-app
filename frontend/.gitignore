@@ -1,0 +1,7 @@
+# Ignore node_modules and build directory
+node_modules/
+build/
+
+# Ignore lock files (optional)
+package-lock.json
+yarn.lock

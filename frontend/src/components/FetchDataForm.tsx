@@ -27,7 +27,7 @@ const navigate = useNavigate()
       if (response.status === 200) {
         setDomain("")
         fetchCompanies()
-        navigate("/companies")
+        
       }
     } catch (err) {
       console.error(err);

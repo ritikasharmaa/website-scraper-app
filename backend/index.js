@@ -2,13 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const dotenv = require('dotenv').config(); 
 const companyRoutes = require('./src/routes/companyRoutes');
 
+const uri = process.env.MONGO_URI; 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://root:password@localhost:27017/scraper?authSource=admin', { useNewUrlParser: true })
+mongoose.connect(uri, { useNewUrlParser: true })
     .then(() => {
         console.log('Connected to MongoDB');
     })

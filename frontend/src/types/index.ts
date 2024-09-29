@@ -1,11 +1,11 @@
 
   type socialProfile = {
-    platform?: string;
-    link?: string;
-    facebook?: string;
-    linkedin?: string;
-    twitter?: string;
-    instagram?: string;
+    platform?: string | undefined;
+    link?: string | undefined;
+    facebook?: string | undefined;
+    linkedin?: string | undefined;
+    twitter?: string | undefined;
+    instagram?: string | undefined;
   }
   
    type  Company = {

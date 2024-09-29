@@ -2,24 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
+import { Company } from '../../types';
 
-interface Company {
-  id: number;
-  name: string;
-  description: string;
-  logo: string;
-  website: string;
-  socialProfiles: {
-    facebook: string;
-    linkedin: string;
-    twitter: string;
-    instagram: string;
-  };
-  address: string;
-  phoneNumber: string;
-  email: string;
-  screenshot: string;
-}
 
 const CompanyDetail = () => {
   const { id } = useParams();
@@ -48,21 +32,30 @@ const CompanyDetail = () => {
               alt={`${company.name} logo`}
               className="w-24 h-24 mr-6"
             />
-            <div>
+            <div className='w-full'>
               <h1 className="text-3xl font-bold mb-2">{company.name}</h1>
-              <div className="flex items-center mb-2">
-  <i className="fa fa-info-circle w-4 h-4 mr-2"></i>
-  <span className="text-gray-600">Description</span>
-</div>
+              <div className='flex w-full justify-between'>
+                <div>
+                <div className="flex items-center mb-2">
+              <i className="fa fa-info-circle w-4 h-4 mt-1"></i>
+              <span className="text-gray-600">Description</span>
+            </div>
               <p className="text-gray-600 mb-4">{company.description}</p>
+                </div>
+             
+              <div>
               <div className="flex items-center mb-2">
                 <i className="fa fa-phone w-4 h-4 mr-2"></i>
-                <span>{company.phoneNumber}</span>
+                <span>{company.phone}</span>
               </div>
               <div className="flex items-center">
                 <i className="fa fa-envelope w-4 h-4 mr-2"></i>
                 <span>{company.email}</span>
               </div>
+              </div>
+              
+              </div>
+              
             </div>
           </div>
         </div>
@@ -83,22 +76,22 @@ const CompanyDetail = () => {
                 <i className="fa fa-envelope w-4 h-4 mr-2"></i>
                 <span>{company.email}</span>
               </div>
-              <div className="flex items-center">
+              {company?.socialProfiles?.facebook &&  <div className="flex items-center">
                 <i className="fa fa-facebook w-4 h-4 mr-2"></i>
-                <a href={company.socialProfiles.facebook} className="text-blue-600">{company.socialProfiles.facebook.replace('https://www.facebook.com/', '')}</a>
-              </div>
-              <div className="flex items-center">
+                <a href={company.socialProfiles.facebook} className="text-blue-600">{company?.socialProfiles?.facebook.replace('https://www.facebook.com/', '')}</a>
+              </div>}
+              {company.socialProfiles.instagram && <div className="flex items-center">
                 <i className="fa fa-instagram w-4 h-4 mr-2"></i>
                 <a href={company.socialProfiles.instagram} className="text-blue-600">{company.socialProfiles.instagram.replace('https://www.instagram.com/', '')}</a>
-              </div>
-              <div className="flex items-center">
+              </div>}
+             {company.socialProfiles.twitter &&  <div className="flex items-center">
                 <i className="fa fa-twitter w-4 h-4 mr-2"></i>
                 <a href={company.socialProfiles.twitter} className="text-blue-600">{company.socialProfiles.twitter.replace('https://twitter.com/', '')}</a>
-              </div>
-              <div className="flex items-center">
+              </div>}
+             {company.socialProfiles.linkedin &&  <div className="flex items-center">
                 <i className="fa fa-linkedin w-4 h-4 mr-2"></i>
                 <a href={company.socialProfiles.linkedin} className="text-blue-600">{company.socialProfiles.linkedin.replace('https://www.linkedin.com/company/', '')}</a>
-              </div>
+              </div>}
               <div className="flex items-center">
                 <i className="fa fa-map-marker w-4 h-4 mr-2"></i>
                 <span>{company.address}</span>
